@@ -1,18 +1,61 @@
 # ASP.NET MVC Calculator
 
-Basic calculator website (Add, Subtract, Multiply, Divide) built with ASP.NET MVC 5 and C#.
-Every calculation is saved to SQL Server table `T_CALCULATOR_History` and shown on a History page.
+A basic calculator website built with **ASP.NET MVC 5** and **C#** in Visual Studio.
+It supports four operations and saves every calculation to a SQL Server database.
 
-## Setup
-1. Open `Database/CreateDatabase.sql` in SSMS and run it (creates `CalculatorDB` and the table).
-2. Open `Calculator.csproj` in Visual Studio.
-3. Check the `CalculatorConnection` string in `Web.config` matches your SQL Server.
-4. Right-click the solution, choose **Restore NuGet Packages**.
-5. Press **F5**.
+## Features
+- Add, Subtract, Multiply, Divide
+- Divide-by-zero protection
+- Input validation
+- History page (last 50 calculations) with Clear History
+- Every calculation saved to table `T_CALCULATOR_History`
 
-## Structure
-- `Models/` data and database classes
-- `Controllers/` calculator logic
-- `Views/` pages
-- `Content/Site.css` styling
-- `Database/` SQL script
+## Technologies
+- ASP.NET MVC 5 (.NET Framework 4.7.2)
+- C#
+- Entity Framework 6
+- SQL Server / LocalDB
+- HTML, CSS, JavaScript
+
+## Project Structure
+```
+Calculator/
+├── App_Start/RouteConfig.cs
+├── Controllers/CalculatorController.cs
+├── Models/
+│   ├── CalculatorModel.cs
+│   ├── CalculatorHistory.cs
+│   └── CalculatorDbContext.cs
+├── Views/
+│   ├── Calculator/Index.cshtml
+│   ├── Calculator/History.cshtml
+│   └── Shared/_Layout.cshtml
+├── Content/Site.css
+├── Database/CreateDatabase.sql
+├── Global.asax
+└── Web.config
+```
+
+## Database Table: T_CALCULATOR_History
+| Column | Type |
+|--------|------|
+| ID | INT, primary key, identity |
+| FirstNumber | FLOAT |
+| SecondNumber | FLOAT |
+| Operation | NVARCHAR(20) |
+| Result | FLOAT |
+| DateTime | DATETIME |
+
+## How to Run
+1. Clone the repo:
+   ```
+   git clone https://github.com/drpkck/Calculator-ASP.NET-MVC.git
+   ```
+2. Run `Database/CreateDatabase.sql` in SQL Server Management Studio.
+3. Open `Calculator.csproj` in Visual Studio.
+4. Check the `CalculatorConnection` connection string in `Web.config`.
+5. Restore NuGet packages (right-click solution, then **Restore NuGet Packages**).
+6. Press **F5**.
+
+## Author
+[drpkck](https://github.com/drpkck)
